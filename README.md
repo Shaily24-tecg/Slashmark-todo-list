@@ -12,5 +12,14 @@ A simple command-line To-Do List application built using Python.
 - Python 3.x
 
 ## Run the Project
-```bash
-python todo_list.py
+
+- ''''bash
+- python todo_list.py
+
+## Author
+
+- Shaily
+
+## Internship ID
+
+- SMI85485
