@@ -1,7 +1,7 @@
 import json
 import os
 
-TASK_FILE = "tasks.json"
+TASK_FILE = "main/tasks.json"
 tasks = []
 
 def load_tasks():

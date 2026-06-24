@@ -1,0 +1,18 @@
+[
+    {
+        "task": "homework",
+        "completed": false
+    },
+    {
+        "task": "assingments",
+        "completed": true
+    },
+    {
+        "task": "self study",
+        "completed": false
+    },
+    {
+        "task": "internship task-1",
+        "completed": true
+    }
+]
