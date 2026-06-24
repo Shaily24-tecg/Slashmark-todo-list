@@ -46,17 +46,27 @@ while True:
     if choice == '1':
         display_tasks()
     elif choice == '2':
-        task_name = input("Enter the task: ")
-        add_task(task_name)
+        task_name = input("Enter the task: ").strip()
+        if task_name:
+            add_task(task_name)
+        else:
+            print("Task name cannot be empty. Please enter a valid task name.")    
     elif choice == '3':
         display_tasks()
-        task_number = int(input("Enter the task number to mark as completed: "))
-        mark_completed(task_number)
+        try:
+            task_number = int(input("Enter the task number to mark as completed: "))
+            mark_completed(task_number)
+        except ValueError:
+            print("Invalid input. Please enter a valid task number.")
     elif choice == '4':
         display_tasks()
-        task_number = int(input("Enter the task number to remove: "))
-        remove_task(task_number)
+        try:
+            task_number = int(input("Enter the task number to remove: "))
+            remove_task(task_number)
+        except ValueError:
+            print("Invalid input. Please enter a valid task number.")
     elif choice == '5':
+        print("Thanks for using the to-do list application. Goodbye!")
         break
     else:
         print("Invalid choice. Please enter a valid option.")
