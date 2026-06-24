@@ -1,74 +1,79 @@
-# Define an empty list to store tasks
+import json
+import os
+
+TASK_FILE = "tasks.json"
 tasks = []
 
-# Function to display the to-do list
+def load_tasks():
+    global tasks
+    if os.path.exists(TASK_FILE):
+        with open(TASK_FILE, "r") as f:
+            tasks = json.load(f)
+
+def save_tasks():
+    with open(TASK_FILE, "w") as f:
+        json.dump(tasks, f, indent=4)
+
 def display_tasks():
     if not tasks:
-        print("Your to-do list is empty.")
+        print("\nNo tasks available.")
     else:
-        print("To-Do List:")
+        print("\n===== TO-DO LIST =====")
         for i, task in enumerate(tasks, start=1):
-            status = "Done" if task["completed"] else "Pending"
-            print(f"{i}. {task['task']} ({status})")
+            status = "✓ Done" if task["completed"] else "✗ Pending"
+            print(f"{i}. {task['task']} - {status}")
 
-# Function to add a task to the to-do list
 def add_task(task_name):
-    task = {"task": task_name, "completed": False}
-    tasks.append(task)
-    print(f"Task '{task_name}' added to your to-do list.")
+    tasks.append({"task": task_name, "completed": False})
+    save_tasks()
+    print("Task added successfully!")
 
-# Function to mark a task as completed
 def mark_completed(task_number):
     if 1 <= task_number <= len(tasks):
         tasks[task_number - 1]["completed"] = True
-        print(f"Task {task_number} marked as completed.")
+        save_tasks()
+        print("Task marked as completed!")
     else:
-        print("Invalid task number. Please enter a valid task number.")
+        print("Invalid task number!")
 
-# Function to remove a task from the to-do list
 def remove_task(task_number):
     if 1 <= task_number <= len(tasks):
-        removed_task = tasks.pop(task_number - 1)
-        print(f"Task '{removed_task['task']}' removed from your to-do list.")
+        removed = tasks.pop(task_number - 1)
+        save_tasks()
+        print(f"Removed: {removed['task']}")
     else:
-        print("Invalid task number. Please enter a valid task number.")
+        print("Invalid task number!")
 
-# Main program loop
+load_tasks()
+
 while True:
-    print("Welcome to the To-Do List Application!")
-    print("\n===== Menu =====")
-    print("\nOptions:")
-    print("1. Display to-do list")
-    print("2. Add a task")
-    print("3. Mark a task as completed")
-    print("4. Remove a task")
-    print("5. Quit")
-    choice = input("Enter your choice: ")
+    print("\n===== MENU =====")
+    print("1. View Tasks")
+    print("2. Add Task")
+    print("3. Mark Completed")
+    print("4. Remove Task")
+    print("5. Exit")
 
-    if choice == '1':
+    choice = input("Enter choice: ")
+
+    if choice == "1":
         display_tasks()
-    elif choice == '2':
-        task_name = input("Enter the task: ").strip()
-        if task_name:
-            add_task(task_name)
-        else:
-            print("Task name cannot be empty. Please enter a valid task name.")    
-    elif choice == '3':
+
+    elif choice == "2":
+        task = input("Enter task: ")
+        add_task(task)
+
+    elif choice == "3":
         display_tasks()
-        try:
-            task_number = int(input("Enter the task number to mark as completed: "))
-            mark_completed(task_number)
-        except ValueError:
-            print("Invalid input. Please enter a valid task number.")
-    elif choice == '4':
+        mark_completed(int(input("Task number: ")))
+
+    elif choice == "4":
         display_tasks()
-        try:
-            task_number = int(input("Enter the task number to remove: "))
-            remove_task(task_number)
-        except ValueError:
-            print("Invalid input. Please enter a valid task number.")
-    elif choice == '5':
-        print("Thanks for using the to-do list application. Goodbye!")
+        remove_task(int(input("Task number: ")))
+
+    elif choice == "5":
+        print("Goodbye!")
         break
+
     else:
-        print("Invalid choice. Please enter a valid option.")
+        print("Invalid choice!")
