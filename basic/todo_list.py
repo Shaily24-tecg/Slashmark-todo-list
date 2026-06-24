@@ -8,7 +8,7 @@ def display_tasks():
     else:
         print("To-Do List:")
         for i, task in enumerate(tasks, start=1):
-            status = "Done" if task["completed"] else "Not Done"
+            status = "Done" if task["completed"] else "Pending"
             print(f"{i}. {task['task']} ({status})")
 
 # Function to add a task to the to-do list
