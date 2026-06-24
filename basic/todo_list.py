@@ -35,6 +35,7 @@ def remove_task(task_number):
 
 # Main program loop
 while True:
+    print("Welcome to the To-Do List Application!")
     print("\nOptions:")
     print("1. Display to-do list")
     print("2. Add a task")
