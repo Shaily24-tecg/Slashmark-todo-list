@@ -15,3 +15,11 @@ A simple command-line To-Do List application built using Python.
 
 ```bash
 python todo_list.py
+
+ ## Author
+
+Shaily
+
+## Internship ID
+
+COT/PRE1/5785
