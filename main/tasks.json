@@ -14,5 +14,21 @@
     {
         "task": "internship task-1",
         "completed": true
+    },
+    {
+        "task": "homework",
+        "completed": false
+    },
+    {
+        "task": "self study",
+        "completed": false
+    },
+    {
+        "task": "music",
+        "completed": false
+    },
+    {
+        "task": "art",
+        "completed": false
     }
 ]
